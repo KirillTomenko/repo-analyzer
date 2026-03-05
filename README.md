@@ -1,138 +1,108 @@
 # 🤖 AI GitHub Repo Analyzer
 
-> **Instant AI-powered code review for any public GitHub repository — right in your terminal.**
+> **Мгновенный AI-анализ любого публичного GitHub-репозитория прямо в терминале.**
 
-Paste a GitHub URL → get a full structured analysis powered by GPT-4o in seconds.
-
----
-
-## ✨ What it does
-
-- 📦 Fetches repo metadata, file structure, README and recent commits via **GitHub API**
-- 🧠 Sends it all to **GPT-4o** for deep analysis
-- 📊 Outputs a beautiful **scored report** with strengths, issues and priority actions
-- 🐳 Runs anywhere via **Docker** — no Python setup needed
+Вставь ссылку на репо — получи полный структурированный отчёт на основе GPT-4o за несколько секунд.
 
 ---
 
-## 📸 Example Output
+## ✨ Что делает
 
-```
-╭─────────────────────────────────────────────────────╮
-│ 🔍 KirillTomenko/business-ideas-generator-cloud     │
-│  ☁️ AI-агент для генерации бизнес-идей              │
-│  ⭐ Stars: 1  🍴 Forks: 0  🐛 Issues: 0            │
-│  📝 License: MIT  🔄 Updated: 2026-02-19            │
-╰─────────────────────────────────────────────────────╯
-
-╭──────────────── 🤖 AI Analysis Report ─────────────────╮
-│                                                         │
-│ ## 🎯 Project Overview                                  │
-│ A FastAPI-based AI agent that generates business        │
-│ ideas using GPT-4o with market analysis...              │
-│                                                         │
-│ ## ✅ Strengths                                         │
-│ - Clean Docker integration with ENV management          │
-│ - Good use of FastAPI for async endpoints               │
-│ ...                                                     │
-│                                                         │
-│ ## 📊 Overall Score                                     │
-│ - Code Quality:    8/10                                 │
-│ - Documentation:   7/10                                 │
-│ - Security:        9/10                                 │
-│ - Architecture:    8/10                                 │
-│ - **Overall: 8/10**                                     │
-╰─────────────────────────────────────────────────────────╯
-```
+- 📦 Получает метаданные репозитория, структуру файлов, README и коммиты через **GitHub API**
+- 🧠 Отправляет всё это в **GPT-4o** для глубокого анализа
+- 📊 Выводит красивый **отчёт с оценками**: сильные стороны, проблемы, приоритетные действия
+- 🐳 Работает через **Docker** — не нужно устанавливать Python
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Быстрый старт
 
-### Option 1: Docker (recommended)
+### Вариант 1: Docker (рекомендуется)
 
 ```bash
-# Build
+# Сборка
 git clone https://github.com/KirillTomenko/repo-analyzer.git
 cd repo-analyzer
 docker build -t repo-analyzer .
 
-# Run
-docker run -e OPENAI_API_KEY=your_key repo-analyzer https://github.com/user/repo
+# Запуск
+docker run -e OPENAI_API_KEY=ваш_ключ repo-analyzer https://github.com/user/repo
 ```
 
-### Option 2: Python
+### Вариант 2: Python
 
 ```bash
 git clone https://github.com/KirillTomenko/repo-analyzer.git
 cd repo-analyzer
 pip install -r requirements.txt
 
-export OPENAI_API_KEY=your_key
+export OPENAI_API_KEY=ваш_ключ        # Mac/Linux
+set OPENAI_API_KEY=ваш_ключ           # Windows
+
 python main.py https://github.com/user/repo
 ```
 
 ---
 
-## 📋 Report Structure
+## 📋 Структура отчёта
 
-| Section | Description |
+| Раздел | Описание |
 |---|---|
-| 🎯 Project Overview | What the project does and its purpose |
-| ✅ Strengths | What's done well |
-| ⚠️ Areas for Improvement | Specific, actionable issues |
-| 🔒 Security & Best Practices | Secrets, dependencies, vulnerabilities |
-| 📁 Code Structure | Architecture and maintainability |
-| 📊 Scores | Code Quality, Docs, Security, Architecture (1-10) |
-| 🚀 Priority Actions | Top 3 things to do next |
+| 🎯 Обзор проекта | Что делает проект и для чего |
+| ✅ Сильные стороны | Что реализовано хорошо |
+| ⚠️ Что улучшить | Конкретные, применимые замечания |
+| 🔒 Безопасность | Секреты, зависимости, уязвимости |
+| 📁 Архитектура | Организация кода и поддерживаемость |
+| 📊 Оценки | Качество кода, документация, безопасность, архитектура (по 10-балльной шкале) |
+| 🚀 Приоритетные действия | Топ-3 вещи, которые стоит сделать прямо сейчас |
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Стек технологий
 
-| Tool | Purpose |
+| Инструмент | Назначение |
 |---|---|
-| Python 3.11 | Core language |
-| GPT-4o (OpenAI) | AI analysis engine |
-| GitHub REST API | Repository data fetching |
-| Rich | Beautiful terminal output |
-| Docker | Containerization |
+| Python 3.11 | Основной язык |
+| GPT-4o (OpenAI) | Движок AI-анализа |
+| GitHub REST API | Получение данных репозитория |
+| Rich | Красивый вывод в терминале |
+| Docker | Контейнеризация |
 
 ---
 
-## 🔒 Security Note
-
-Your `OPENAI_API_KEY` is passed as an environment variable at runtime — it is **never** stored in the image or code.
-
-```bash
-# ✅ Safe — key only exists for this run
-docker run -e OPENAI_API_KEY=sk-... repo-analyzer https://github.com/...
-```
-
----
-
-## 🗂 Project Structure
+## 🗂 Структура проекта
 
 ```
 repo-analyzer/
-├── main.py           # CLI entry point & argument parsing
-├── analyzer.py       # GitHub API + GPT-4o analysis logic
-├── Dockerfile        # Container definition
-├── requirements.txt  # Python dependencies
-├── .env.example      # Environment variable template
+├── main.py           # Точка входа, разбор аргументов CLI
+├── analyzer.py       # Логика: GitHub API + GPT-4o анализ
+├── Dockerfile        # Описание контейнера
+├── requirements.txt  # Зависимости Python
+├── .env.example      # Шаблон переменных окружения
 └── .gitignore
 ```
 
 ---
 
-## 👤 Author
+## 🔒 Безопасность
 
-**Kirill Tomenko** · [GitHub](https://github.com/KirillTomenko) · [Telegram](https://t.me/Kirill_BT)
+`OPENAI_API_KEY` передаётся как переменная окружения при запуске — он **никогда** не хранится в образе или коде.
 
-> Part of my AI tools portfolio — building practical AI agents with Python & Docker.
+```bash
+# ✅ Безопасно — ключ существует только во время этого запуска
+docker run -e OPENAI_API_KEY=sk-... repo-analyzer https://github.com/...
+```
 
 ---
 
-## 📄 License
+## 👤 Автор
 
-MIT — free to use, modify and distribute.
+**Kirill Tomenko** · [GitHub](https://github.com/KirillTomenko) · [Telegram](https://t.me/Kirill_BT)
+
+> Часть моего портфолио AI-инструментов — создаю практичных AI-агентов на Python и Docker.
+
+---
+
+## 📄 Лицензия
+
+MIT — можно свободно использовать, изменять и распространять.
