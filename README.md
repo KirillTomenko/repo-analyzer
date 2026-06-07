@@ -6,6 +6,15 @@
 
 ---
 
+## Why This Project Matters
+
+Open-source maintainers and developers often need a quick way to evaluate repository health, activity, maintainability, and community engagement.
+
+repo-analyzer helps by collecting and analyzing key repository metrics, generating health scores, and producing actionable insights.
+
+The goal is to make repository analysis accessible, transparent, and useful for developers, maintainers, and organizations.
+
+
 ## ✨ Что делает
 
 - 📦 Получает метаданные репозитория, структуру файлов, README и коммиты через **GitHub API**
